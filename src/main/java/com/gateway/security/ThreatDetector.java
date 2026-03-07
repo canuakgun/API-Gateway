@@ -1,23 +1,20 @@
 package com.gateway.security;
 
-import java.util.List;
-
+import com.gateway.security.ThreatDataManager;
 import com.gateway.model.Request;
-
+import java.util.List;
 import java.util.ArrayList;
 
 public class ThreatDetector {
 
     private List<String> blacklistedIPS;
     private List<String> dangerousKeyWords;
+    private ThreatDataManager threatDataManager;
 
-    public ThreatDetector() {
-        this.blacklistedIPS = new ArrayList<>();
-        this.dangerousKeyWords = new ArrayList<>();
-
-        blacklistedIPS.add("192.168.1.1");
-        dangerousKeyWords.add("DROP");
-        dangerousKeyWords.add("SELECT");
+    public ThreatDetector(ThreatDataManager threatDataManager) {
+        this.threatDataManager = threatDataManager;
+        blacklistedIPS = threatDataManager.readBlackList();
+        dangerousKeyWords = threatDataManager.readDangerousKeywords();
     }
 
     public boolean isSafe(Request request) {
@@ -36,6 +33,14 @@ public class ThreatDetector {
     }
 
     public void addIPToBlacklist(String ip) {
-        blacklistedIPS.add(ip);
+        if (blacklistedIPS.contains(ip)) {
+            System.out.println("ip is already present in the list");
+        } else {
+            blacklistedIPS.add(ip);
+        }
+    }
+
+    public boolean isBlacklisted(String ip) {
+        return blacklistedIPS.contains(ip);
     }
 }

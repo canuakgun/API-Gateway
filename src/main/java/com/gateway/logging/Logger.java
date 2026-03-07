@@ -1,6 +1,9 @@
 package com.gateway.logging;
 
 import com.gateway.model.Request;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 public class Logger {
 
@@ -8,14 +11,19 @@ public class Logger {
 
     }
 
+    String filePath = "logs/security_logs.txt";
+
     public void logAction(Request request, boolean isSafe) {
-        if (!isSafe) {
-            System.out.println("[SECURITY VIOLATION] Blocked: " + request.getIpAddress() +
-                    " | Method: " + request.getMethod() +
-                    " | URL: " + request.getUrl());
-        } else {
-            System.out.println("[INFORMATION] Request Approved: " + request.getIpAddress() +
-                    " -> " + request.getUrl());
+
+        try (FileWriter fw = new FileWriter(filePath, true); BufferedWriter bw = new BufferedWriter(fw)) {
+            String label = isSafe ? "[APPROVED]" : "[BLOCKED]";
+
+            bw.write(label + " ip: " + request.getIpAddress() + " | url: " + request.getUrl() +
+                    " | method: " + request.getMethod() + " | timestamp: " + request.getTimestamp());
+            bw.newLine();
+        } catch (IOException e) {
+            System.err.println("File writing error! Path: " + filePath);
+            e.printStackTrace();
         }
     }
 }

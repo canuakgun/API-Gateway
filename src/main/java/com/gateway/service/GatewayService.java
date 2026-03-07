@@ -35,14 +35,16 @@ public class GatewayService {
             System.out.println(">>> Reason: Threat Detected.");
 
             String rejectedIpAddress = request.getIpAddress();
-            int currentStrikes = incidentCount.getOrDefault(rejectedIpAddress, 0) + 1;
-            incidentCount.put(rejectedIpAddress, currentStrikes);
+            if (!detector.isBlacklisted(rejectedIpAddress)) {
+                int currentStrikes = incidentCount.getOrDefault(rejectedIpAddress, 0) + 1;
+                incidentCount.put(rejectedIpAddress, currentStrikes);
 
-            if (currentStrikes >= 3) {
-                detector.addIPToBlacklist(rejectedIpAddress);
-                System.out.println("!!! [CRITICAL] IP " + rejectedIpAddress + " has been permanently blacklisted.");
-            } else {
-                System.out.println(">>> Warning: Incident count for this IP: " + currentStrikes);
+                if (currentStrikes == 3) {
+                    detector.addIPToBlacklist(rejectedIpAddress);
+                    System.out.println("!!! [CRITICAL] IP " + rejectedIpAddress + " has been permanently blacklisted.");
+                } else {
+                    System.out.println(">>> Warning: Incident count for this IP: " + currentStrikes);
+                }
             }
         }
         System.out.println("--------------------------------------------------");
