@@ -16,7 +16,7 @@ public class Logger {
     public void logAction(Request request, boolean isSafe) {
 
         try (FileWriter fw = new FileWriter(filePath, true); BufferedWriter bw = new BufferedWriter(fw)) {
-            String label = isSafe ? "[APPROVED]" : "[BLOCKED]";
+            String label = isSafe ? "[APPROVED] | " : "[BLOCKED] | ";
 
             bw.write(label + " ip: " + request.getIpAddress() + " | url: " + request.getUrl() +
                     " | method: " + request.getMethod() + " | timestamp: " + request.getTimestamp());
