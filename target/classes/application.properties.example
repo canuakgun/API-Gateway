@@ -1,0 +1,7 @@
+db.url=your_database_url
+db.username=your_username
+db.password=your_password
+files.blacklistPath=your_blacklisted_ips_path
+files.keywordsPath=your_dangerous_keywords_path
+td.useDatabase=true||false (depending on if you are using database or not)
+log.filePath=file_path
