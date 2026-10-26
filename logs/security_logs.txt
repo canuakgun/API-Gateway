@@ -110,3 +110,8 @@
 [BLOCKED] |  ip: 192.168.1.50 | url: /profile | method: GET | timestamp: 2026-03-16T23:51:41.078445200
 [BLOCKED] |  ip: 192.168.1.50 | url: /home | method: GET | timestamp: 2026-03-16T23:51:41.080446900
 [APPROVED] |  ip: 10.0.0.1 | url: /home | method: GET | timestamp: 2026-03-16T23:51:41.083445600
+[BLOCKED] |  ip: 192.168.1.1 | url: /home | method: GET | timestamp: 2026-10-24T20:36:35.746544
+[BLOCKED] |  ip: 192.168.1.1 | url: /home | method: GET | timestamp: 2026-10-24T20:36:40.303364900
+[BLOCKED] |  ip: 192.168.1.1 | url: /dashboard | method: GET | timestamp: 2026-10-24T20:37:30.739381900
+[BLOCKED] |  ip: 192.168.1.1 | url: /dashboard | method: GET | timestamp: 2026-10-24T20:37:57.085388200
+[APPROVED] |  ip: 10.0.0.1 | url: /dashboard | method: GET | timestamp: 2026-10-24T20:38:21.113540700
