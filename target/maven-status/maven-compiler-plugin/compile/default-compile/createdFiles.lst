@@ -1,8 +1,0 @@
-com\gateway\logging\Logger.class
-com\gateway\service\GatewayService.class
-com\gateway\security\ThreatDetector.class
-com\gateway\logging\LogIOService.class
-com\gateway\model\HttpMethod.class
-com\gateway\model\Request.class
-com\gateway\security\ThreatDataManager.class
-com\gateway\Main.class
