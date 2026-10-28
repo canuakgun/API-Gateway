@@ -1,7 +1,31 @@
-db.url=your_database_url
-db.username=your_username
-db.password=your_password
-files.blacklistPath=your_blacklisted_ips_path
-files.keywordsPath=your_dangerous_keywords_path
-td.useDatabase=true||false (depending on if you are using database or not)
-log.filePath=file_path
+# Database
+db.url=${DB_URL:jdbc:postgresql://localhost:5432/gateway_db}
+db.username=${DB_USERNAME:your_username}
+db.password=${DB_PASSWORD:your_password}
+
+# File paths
+files.blacklistPath=logs/blacklist.txt
+files.keywordsPath=logs/keywords.txt
+
+# Threat detection
+td.useDatabase=true
+
+# Logging
+log.filePath=logs/security_logs.txt
+log.exportPath=logs/export
+
+# JWT
+jwt.secret=your_secret_key_min_32_chars
+jwt.expiration=86400000
+
+# Auth
+auth.username=your_username
+auth.password=your_password
+
+# Spring Security
+spring.security.user.name=your_username
+spring.security.user.password=your_password
+
+# Actuator
+management.endpoints.web.exposure.include=health,info,metrics
+management.endpoint.health.show-details=always
